@@ -1,17 +1,9 @@
 require.config({paths: {'vs': 'monaco-editor-0.55.1/lib/package/min/vs'}});
 
-
-
 HTMLWidgets.widget({
-
    name: 'editor',
-
    type: 'output',
-
    factory: function(el, width, height) {
-
-      // TODO: define shared variables for this instance
-
       return {
          renderValue: function(x) {
             require(['vs/editor/editor.main'], function () {
@@ -188,10 +180,15 @@ createStatusBar = function(editor) {
    status_bar_div.className = "monaco-editor-status-bar";
 
    const cursor_pos_div = document.createElement('span');
+   cursor_pos_div.className = "monaco-status-button";
    cursor_pos_div.textContent = "Ln: 0, Col: 0";
    editor.onDidChangeCursorPosition((event) => {
       const [row, column] = Object.values(event.position);
       cursor_pos_div.textContent = `Ln: ${row - 1}, Col: ${column - 1}`;
+   });
+   cursor_pos_div.addEventListener('click', function() {
+      editor.focus();
+      editor.trigger(null, "editor.action.gotoLine", null);
    });
 
    const selection_div = document.createElement('span');
@@ -206,6 +203,9 @@ createStatusBar = function(editor) {
       }
    });
 
+   const spacer = document.createElement('div');
+   spacer.style.flex = "1";
+
    const words_div = document.createElement('span');
    const lines_div = document.createElement('span');
    lines_div.textContent = `Lines: ${editor.getValue().split(/\r\n|\n|\r/)?.length}`;
@@ -216,13 +216,16 @@ createStatusBar = function(editor) {
       words_div.textContent = `Words: ${text.match(/\w+/g)?.length}`;
    })
 
-   const spacer = document.createElement('div');
-   spacer.style.flex = "1";
-
-   const setting_div = document.createElement('button');
-   setting_div.textContent = "Setting";
-   setting_div.classList.add("status_btn");
-   setting_div.title = "Not Available at Present";
+   const tab_size_div = document.createElement('span');
+   tab_size_div.className = "monaco-status-button";
+   tab_size_div.textContent = `Spaces: ${editor.getModel().getOptions().tabSize}`;
+   tab_size_div.addEventListener('click', function() {
+      editor.focus();
+      editor.trigger(null, "editor.action.indentUsingSpaces", null);
+   });
+   editor.getModel().onDidChangeOptions(function(event) {
+      tab_size_div.textContent = `Spaces: ${editor.getModel().getOptions().tabSize}`;
+   })
 
 
    status_bar_div.appendChild(cursor_pos_div);
@@ -230,6 +233,7 @@ createStatusBar = function(editor) {
    status_bar_div.appendChild(spacer);
    status_bar_div.appendChild(words_div);
    status_bar_div.appendChild(lines_div);
+   status_bar_div.appendChild(tab_size_div);
    // status_bar_div.appendChild(setting_div);
 
    return status_bar_div;

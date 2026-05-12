@@ -9,7 +9,7 @@ ui <- shiny::fluidPage(
 
 server <- function(input, output, session) {
    output$editor <- shinyMonaco::renderEditor({
-      shinyMonaco::editor("asd")
+      shinyMonaco::editor("asd", showStatusBar = F)
    })
    output$editor2 <- shinyMonaco::renderEditor({
       shinyMonaco::editor("zxc")

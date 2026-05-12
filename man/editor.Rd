@@ -17,7 +17,7 @@ editor(
   placeholder = NULL,
   readOnly = FALSE,
   renderWhitespace = "boundary",
-  rulers = list(80, 100, 120),
+  rulers = list(100),
   scrollBeyondLastLine = TRUE,
   showStatusBar = TRUE,
   tabSize = 4,
