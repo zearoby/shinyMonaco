@@ -1,0 +1,6 @@
+dependencies:
+ - name: monaco-editor
+   version: 0.55.1
+   src: htmlwidgets
+   script: monaco-editor/package/min/vs/loader.js
+   stylesheet: editor.css
