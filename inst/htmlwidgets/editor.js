@@ -67,7 +67,7 @@ const getMonacoEditor = function(id) {
    for (const editor of monaco.editor.getEditors()) {
       if (editor.id && editor.id === id) {
          return editor;
-      }
+      };
    };
    console.warn(`The monaco editor "${id}" is not found.`);
    return null;
@@ -216,6 +216,12 @@ createStatusBar = function(editor) {
       words_div.textContent = `Words: ${text.match(/\w+/g)?.length}`;
    })
 
+   const language_div = document.createElement('span');
+   language_div.textContent = editor.getModel().getLanguageId();
+   editor.getModel().onDidChangeLanguage(function(event) {
+      language_div.textContent = editor.getModel().getLanguageId();
+   });
+
    const tab_size_div = document.createElement('span');
    tab_size_div.className = "monaco-status-button";
    tab_size_div.textContent = `Spaces: ${editor.getModel().getOptions().tabSize}`;
@@ -225,16 +231,15 @@ createStatusBar = function(editor) {
    });
    editor.getModel().onDidChangeOptions(function(event) {
       tab_size_div.textContent = `Spaces: ${editor.getModel().getOptions().tabSize}`;
-   })
-
+   });
 
    status_bar_div.appendChild(cursor_pos_div);
    status_bar_div.appendChild(selection_div);
    status_bar_div.appendChild(spacer);
    status_bar_div.appendChild(words_div);
    status_bar_div.appendChild(lines_div);
+   status_bar_div.appendChild(language_div);
    status_bar_div.appendChild(tab_size_div);
-   // status_bar_div.appendChild(setting_div);
 
    return status_bar_div;
 }
