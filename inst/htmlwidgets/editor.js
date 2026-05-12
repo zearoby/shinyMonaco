@@ -27,8 +27,12 @@ HTMLWidgets.widget({
                if (x.showStatusBar == true) {
                   el.appendChild(createStatusBar(editor));
                }
+               if (x.enableSpellCheck == true) {
+                  editor.enableSpellCheck = x.enableSpellCheck;
+               }
                addAction(editor);
                initOnDidChangeEvent(editor);
+               editor.spellChecker = new MonacoSpellChecker(editor);
                editor.focus();
                if (HTMLWidgets.shinyMode) {
                   Shiny.setInputValue(editor.id, editor.getValue(), {priority: "event"});

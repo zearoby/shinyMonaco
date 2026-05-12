@@ -2,8 +2,8 @@ library(shiny)
 
 ui <- shiny::fluidPage(
    shiny::fluidRow(
-      shinyMonaco::editorOutput("editor", height = "100vh"),
-      shinyMonaco::editorOutput("editor2", height = "100vh")
+      shinyMonaco::editorOutput("editor", height = "50vh"),
+      shinyMonaco::editorOutput("editor2", height = "50vh")
    )
 )
 

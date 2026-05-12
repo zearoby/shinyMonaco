@@ -1,6 +1,13 @@
 dependencies:
- - name: monaco-editor
-   version: 0.55.1
-   src: htmlwidgets
-   script: lib/package/min/vs/loader.js
-   stylesheet: editor.css
+   -  name: monaco-editor
+      version: 0.55.1
+      src: htmlwidgets
+      script:
+         - spell_checker.js
+         - dictionary/typo.js
+         - dictionary/en_US/en_US-aff.js
+         - dictionary/en_US/en_US-dic.js
+         - lib/package/min/vs/loader.js
+      stylesheet:
+         - editor.css
+         - spell_checker.css
