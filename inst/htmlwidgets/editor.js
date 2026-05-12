@@ -1,4 +1,4 @@
-require.config({paths: {'vs': 'monaco-editor-0.55.1/monaco-editor/package/min/vs'}});
+require.config({paths: {'vs': 'monaco-editor-0.55.1/lib/package/min/vs'}});
 
 
 
@@ -22,8 +22,20 @@ HTMLWidgets.widget({
                );
                el.innerHTML = '';
                const editor = monaco.editor.create(el, getEditorSetting(x));
+               editor.id = el.id;
+
+               if (x.showStatusBar == true) {
+                  el.appendChild(createStatusBar(editor));
+               }
                addAction(editor);
-               initOnDidChangeEvent(editor);
+               if (HTMLWidgets.shinyMode) {
+                  initOnDidChangeEvent(editor);
+                  Shiny.setInputValue(editor.id, editor.getValue(), {priority: "event"});
+                  Shiny.setInputValue(editor.id + "_cursor_changed", JSON.stringify({row: 0, column: 0}), {priority: "event"});
+                  Shiny.setInputValue(editor.id + "_selected_text", "", {priority: "event"});
+                  Shiny.setInputValue(editor.id + "_ready", true, {priority: "event"});
+               }
+               editor.focus();
             });
          },
 
@@ -162,6 +174,59 @@ const addAction = function(editor) {
          }
       }
    });
+}
+
+
+createStatusBar = function(editor) {
+   const status_bar_div = document.createElement('div');
+   status_bar_div.className = "monaco-editor-status-bar";
+
+   const cursor_pos_div = document.createElement('span');
+   cursor_pos_div.textContent = "Ln: 0, Col: 0";
+   editor.onDidChangeCursorPosition((event) => {
+      const [row, column] = Object.values(event.position);
+      cursor_pos_div.textContent = `Ln: ${row - 1}, Col: ${column - 1}`;
+   });
+
+   const selection_div = document.createElement('span');
+   editor.onDidChangeCursorSelection((event) => {
+      const selection = event.selection;
+      const selectedText = editor.getModel().getValueInRange(selection);
+      if (selectedText.length > 0) {
+         selection_div.textContent = `Sel: ${selectedText.length}/${selectedText.split(/\r\n|\r|\n/).length}`;
+      }
+      else {
+         selection_div.textContent = null;
+      }
+   });
+
+   const words_div = document.createElement('span');
+   const lines_div = document.createElement('span');
+   lines_div.textContent = `Lines: ${editor.getValue().split(/\r\n|\n|\r/)?.length}`;
+   words_div.textContent = `Words: ${editor.getValue().match(/\w+/g)?.length}`;
+   editor.onDidChangeModelContent((event) => {
+      const text = editor.getValue();
+      lines_div.textContent = `Lines: ${text.split(/\r\n|\n|\r/)?.length}`;
+      words_div.textContent = `Words: ${text.match(/\w+/g)?.length}`;
+   })
+
+   const spacer = document.createElement('div');
+   spacer.style.flex = "1";
+
+   const setting_div = document.createElement('button');
+   setting_div.textContent = "Setting";
+   setting_div.classList.add("status_btn");
+   setting_div.title = "Not Available at Present";
+
+
+   status_bar_div.appendChild(cursor_pos_div);
+   status_bar_div.appendChild(selection_div);
+   status_bar_div.appendChild(spacer);
+   status_bar_div.appendChild(words_div);
+   status_bar_div.appendChild(lines_div);
+   // status_bar_div.appendChild(setting_div);
+
+   return status_bar_div;
 }
 
 
