@@ -28,14 +28,14 @@ HTMLWidgets.widget({
                   el.appendChild(createStatusBar(editor));
                }
                addAction(editor);
+               initOnDidChangeEvent(editor);
+               editor.focus();
                if (HTMLWidgets.shinyMode) {
-                  initOnDidChangeEvent(editor);
                   Shiny.setInputValue(editor.id, editor.getValue(), {priority: "event"});
                   Shiny.setInputValue(editor.id + "_cursor_changed", JSON.stringify({row: 0, column: 0}), {priority: "event"});
                   Shiny.setInputValue(editor.id + "_selected_text", "", {priority: "event"});
                   Shiny.setInputValue(editor.id + "_ready", true, {priority: "event"});
                }
-               editor.focus();
             });
          },
 
@@ -79,27 +79,29 @@ const getMonacoEditor = function(id) {
 
 
 const initOnDidChangeEvent = function(editor) {
-   editor.onDidChangeModelContent((event) => {
-      Shiny.setInputValue(
-         editor.id, editor.getValue(), {priority: "event"}
-      );
-   })
-   editor.onDidChangeCursorPosition((event) => {
-      const [row, column] = Object.values(event.position);
-      Shiny.setInputValue(
-         editor.id + "_cursor_changed", JSON.stringify({row: row - 1, column: column - 1}), {priority: "event"}
-      );
-   });
-   editor.onDidChangeCursorSelection((event) => {
-      const selection = event.selection;
-      Shiny.setInputValue(
-         editor.id + "_selection_changed", JSON.stringify(selection), {priority: "event"}
-      );
-      const selectedText = editor.getModel().getValueInRange(selection);
-      Shiny.setInputValue(
-         editor.id + "_selected_text", selectedText, {priority: "event"}
-      );
-   });
+   if (HTMLWidgets.shinyMode) {
+      editor.onDidChangeModelContent((event) => {
+         Shiny.setInputValue(
+            editor.id, editor.getValue(), {priority: "event"}
+         );
+      })
+      editor.onDidChangeCursorPosition((event) => {
+         const [row, column] = Object.values(event.position);
+         Shiny.setInputValue(
+            editor.id + "_cursor_changed", JSON.stringify({row: row - 1, column: column - 1}), {priority: "event"}
+         );
+      });
+      editor.onDidChangeCursorSelection((event) => {
+         const selection = event.selection;
+         Shiny.setInputValue(
+            editor.id + "_selection_changed", JSON.stringify(selection), {priority: "event"}
+         );
+         const selectedText = editor.getModel().getValueInRange(selection);
+         Shiny.setInputValue(
+            editor.id + "_selected_text", selectedText, {priority: "event"}
+         );
+      });
+   }
 }
 
 
