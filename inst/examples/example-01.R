@@ -12,7 +12,7 @@ server <- function(input, output, session) {
       shinyMonaco::editor("asd", language = "python")
    })
    output$editor2 <- shinyMonaco::renderEditor({
-      shinyMonaco::editor("zxc")
+      shinyMonaco::editor("zxcd")
    })
 }
 
