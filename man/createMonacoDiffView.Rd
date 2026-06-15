@@ -31,6 +31,6 @@ Create monaco diff view for exist editors in an exist widget
 }
 \examples{
 if(interactive()){
-   shinyEditor::createMonacoDiffView(editorAId = "editor1", editorBId = "editor2")
+   shinyMonaco::createMonacoDiffView(editorAId = "editor1", editorBId = "editor2")
 }
 }

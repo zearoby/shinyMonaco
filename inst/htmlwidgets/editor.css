@@ -1,13 +1,20 @@
-.monaco-editor-status-bar {
+:root {
+   --monaco-status-bar-color: black;
+   --monaco-status-bar-bg: white;
+}
+
+.monaco-status-bar {
    position: relative;
    gap: 10px;
-   top: -20px;
+   top: -24px;
    width: 100%;
-   height: 20px;
+   height: 24px;
    z-index: 1000;
    display: flex;
    padding-left: 10px;
    padding-right: 10px;
+   color: var(--monaco-status-bar-color);
+   background: var(--monaco-status-bar-bg);
 }
 
 
@@ -21,11 +28,9 @@
 }
 
 .monaco-status-button:hover {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .monaco-status-button:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
 }

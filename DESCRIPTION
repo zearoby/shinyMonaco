@@ -2,7 +2,7 @@ Package: shinyMonaco
 Type: Package
 Title: JavaScript 'Monaco' Editors Bindings for 'shiny' Application
 Version: 0.1.0
-Date: 2026-05-12
+Date: 2026-06-15
 Authors@R: c(person("zearoby", email = "949386232@qq.com", role = c("aut", "cre")))
 Maintainer: zearoby <949386232@qq.com>
 Description: JavaScript 'Monaco' editor bindings to enable a rich text widget

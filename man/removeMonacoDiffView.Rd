@@ -17,6 +17,6 @@ Remove monaco diff view for exist editors
 }
 \examples{
 if(interactive()){
-   shinyEditor::removeMonacoDiffView(elementId = "editor1")
+   shinyMonaco::removeMonacoDiffView(elementId = "editor1")
 }
 }

@@ -177,7 +177,7 @@ const addAction = function(editor) {
 
 createStatusBar = function(editor) {
    const status_bar_div = document.createElement('div');
-   status_bar_div.className = "monaco-editor-status-bar";
+   status_bar_div.className = "monaco-status-bar";
 
    const cursor_pos_div = document.createElement('span');
    cursor_pos_div.className = "monaco-status-button";
@@ -222,15 +222,15 @@ createStatusBar = function(editor) {
       language_div.textContent = editor.getModel().getLanguageId();
    });
 
-   const tab_size_div = document.createElement('span');
-   tab_size_div.className = "monaco-status-button";
-   tab_size_div.textContent = `Spaces: ${editor.getModel().getOptions().tabSize}`;
-   tab_size_div.addEventListener('click', function() {
+   const indent_size_div = document.createElement('span');
+   indent_size_div.className = "monaco-status-button";
+   indent_size_div.textContent = `Spaces: ${editor.getModel().getOptions().indentSize}`;
+   indent_size_div.addEventListener('click', function() {
       editor.focus();
       editor.trigger(null, "editor.action.indentUsingSpaces", null);
    });
    editor.getModel().onDidChangeOptions(function(event) {
-      tab_size_div.textContent = `Spaces: ${editor.getModel().getOptions().tabSize}`;
+      indent_size_div.textContent = `Spaces: ${editor.getModel().getOptions().indentSize}`;
    });
 
    status_bar_div.appendChild(cursor_pos_div);
@@ -239,7 +239,7 @@ createStatusBar = function(editor) {
    status_bar_div.appendChild(words_div);
    status_bar_div.appendChild(lines_div);
    status_bar_div.appendChild(language_div);
-   status_bar_div.appendChild(tab_size_div);
+   status_bar_div.appendChild(indent_size_div);
 
    return status_bar_div;
 }

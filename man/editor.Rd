@@ -20,12 +20,12 @@ editor(
   rulers = list(100),
   scrollBeyondLastLine = TRUE,
   showStatusBar = TRUE,
-  tabSize = 4,
+  indentSize = 4,
   theme = "vs",
   wordWrap = "off",
   automaticLayout = TRUE,
   ...,
-  width = NULL,
+  width = "100\%",
   height = NULL,
   elementId = NULL
 )
