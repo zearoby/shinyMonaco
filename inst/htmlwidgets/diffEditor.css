@@ -1,11 +1,15 @@
-:root {
-   --monaco-diff-editor-tool-bar-color: black;
-   --monaco-diff-editor-tool-bar-bg: white;
-}
-
 .monaco-diff-editor-tool-bar {
-    background: black;
-    color: white;
+   position: relative;
+   gap: 10px;
+   width: 100%;
+   top: 0px;
+   height: 24px;
+   z-index: 1000;
+   display: flex;
+   padding-left: 10px;
+   padding-right: 10px;
+   color: var(--monaco-status-bar-color);
+   background: var(--monaco-status-bar-bg);
 }
 
 

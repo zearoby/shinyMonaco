@@ -11,4 +11,5 @@ dependencies:
          - utils.js
       stylesheet:
          - editor.css
+         - diffEditor.css
          - spell_checker.css
