@@ -2,7 +2,7 @@
 % Please edit documentation in R/diffEditor.R
 \name{diffEditor}
 \alias{diffEditor}
-\title{Render an Ace diffEditor}
+\title{Render a diffEditor}
 \usage{
 diffEditor(
   valueA,
@@ -37,7 +37,7 @@ diffEditor(
 Widget for shiny application
 }
 \description{
-Render an Ace diff editor on an application page.
+Render a diff editor on an application page.
 }
 \examples{
 if(interactive()){

@@ -1,6 +1,6 @@
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @description
-#'    Render an Ace diff editor on an application page.
+#'    Render a diff editor on an application page.
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 # Function Arguments:
 #' @param valueA
@@ -30,7 +30,7 @@
 #' @export diffEditor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 #' @name   diffEditor
-#' @title  Render an Ace diffEditor
+#' @title  Render a diffEditor
 #' @rdname diffEditor
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
