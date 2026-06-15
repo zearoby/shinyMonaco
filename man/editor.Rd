@@ -20,7 +20,7 @@ editor(
   rulers = list(100),
   scrollBeyondLastLine = TRUE,
   showStatusBar = TRUE,
-  indentSize = 4,
+  tabSize = 4,
   theme = "vs",
   wordWrap = "off",
   automaticLayout = TRUE,

@@ -8,6 +8,7 @@ dependencies:
          - dictionary/en_US/en_US-aff.js
          - dictionary/en_US/en_US-dic.js
          - lib/package/min/vs/loader.js
+         - utils.js
       stylesheet:
          - editor.css
          - spell_checker.css

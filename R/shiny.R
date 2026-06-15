@@ -34,8 +34,8 @@ createMonacoDiffView <- function(editorAId, editorBId, elementId, sessionA = shi
    removeMonacoDiffView(elementId)
    shinyjs::runjs(
       paste0(
-         "const editorA = getMonacoEditor('", sessionA$ns(editorAId), "');",
-         "const editorB = getMonacoEditor('", sessionB$ns(editorBId), "');",
+         "const editorA = getEditor('", sessionA$ns(editorAId), "');",
+         "const editorB = getEditor('", sessionB$ns(editorBId), "');",
          "const el = document.getElementById('", elementId, "');",
          "el.innerHTML = '';",
          "const diffEditor = monaco.editor.createDiffEditor(el, {",
@@ -121,7 +121,7 @@ setEnableSpellCheck <- function(outputId, enable = TRUE, session = shiny::getDef
    if (length(enable) != 1 || !enable %in% c(TRUE, FALSE)) stop("`enable` must be TRUE or FALSE")
    shinyjs::runjs(
       paste0(
-         "const editor = getMonacoEditor('", session$ns(outputId), "');",
+         "const editor = getEditor('", session$ns(outputId), "');",
          "if (", tolower(enable), " == true) {",
          "   editor.spellChecker.enableSpellCheck();",
          "}",
@@ -165,7 +165,7 @@ updateOption <- function(outputId, name, value, session = shiny::getDefaultReact
    check_output_id(outputId)
    shinyjs::runjs(
       paste0(
-         "const editor = getMonacoEditor('", session$ns(outputId), "');",
+         "const editor = getEditor('", session$ns(outputId), "');",
          "const option = {", jsonlite::toJSON(name, auto_unbox = TRUE),":", jsonlite::toJSON(value, auto_unbox = TRUE), "};",
          "editor.updateOptions(option);",
          "editor.getModel().updateOptions(option);"
@@ -205,7 +205,7 @@ updateOptions <- function(outputId, options, session = shiny::getDefaultReactive
    if (!is.list(options)) stop("`options` must be list")
    shinyjs::runjs(
       paste0(
-         "const editor = getMonacoEditor('", session$ns(outputId), "');",
+         "const editor = getEditor('", session$ns(outputId), "');",
          "const option = ", jsonlite::toJSON(options, auto_unbox = TRUE), ";",
          "editor.updateOptions(option);",
          "editor.getModel().updateOptions(option);"
@@ -286,7 +286,7 @@ setLanguage <- function(outputId, language, session = shiny::getDefaultReactiveD
    check_output_id(outputId)
    shinyjs::runjs(
       paste0(
-         "const editor = getMonacoEditor('", session$ns(outputId), "');",
+         "const editor = getEditor('", session$ns(outputId), "');",
          "monaco.editor.setModelLanguage(editor.getModel(), '", language, "');"
       )
    )
@@ -321,7 +321,7 @@ setFocus <- function(outputId, session = shiny::getDefaultReactiveDomain()) {
    check_output_id(outputId)
    shinyjs::runjs(
       paste0(
-         "const editor = getMonacoEditor('", session$ns(outputId), "');",
+         "const editor = getEditor('", session$ns(outputId), "');",
          "editor.focus();"
       )
    )
@@ -361,7 +361,7 @@ setValue <- function(outputId, value, clearChangedHistory = FALSE, session = shi
    if (!missing(value)) value <- paste0(unlist(value), collapse = "\n")
    shinyjs::runjs(
       paste0(
-         "const editor = getMonacoEditor('", session$ns(outputId), "');",
+         "const editor = getEditor('", session$ns(outputId), "');",
          ifelse(
             clearChangedHistory,
             paste0("editor.setValue('", value, "');"),

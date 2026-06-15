@@ -19,7 +19,7 @@ editor <- function(
       rulers               = list(100),
       scrollBeyondLastLine = TRUE,
       showStatusBar        = TRUE,
-      indentSize           = 4,
+      tabSize              = 4,
       theme                = "vs",
       wordWrap             = "off",
       automaticLayout      = TRUE,
@@ -50,7 +50,7 @@ editor <- function(
       rulers = rulers,
       scrollBeyondLastLine = scrollBeyondLastLine,
       showStatusBar = showStatusBar,
-      indentSize = indentSize,
+      tabSize = tabSize,
       wordWrap = wordWrap,
       automaticLayout = automaticLayout,
       ...
@@ -58,8 +58,8 @@ editor <- function(
 
    # create widget
    htmlwidgets::createWidget(
-      name = 'editor',
       x,
+      name = 'editor',
       width = width,
       height = height,
       package = 'shinyMonaco',

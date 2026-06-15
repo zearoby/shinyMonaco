@@ -11,13 +11,13 @@ ui <- bslib::page_fillable(
       shiny::actionButton("b2", "TabSize", title = "Update tab size to 3 spaces", class = "btn-sm btn-primary"),
       shiny::actionButton("b3", "Options", title = "Update tab size and wordWrap", class = "btn-sm btn-primary"),
       shiny::actionButton("b4", "Theme", title = "Change theme", class = "btn-sm btn-primary"),
-      shiny::actionButton("b5", "Language", class = "btn-sm btn-primary"),
-      shiny::actionButton("b6", "Value", class = "btn-sm btn-primary"),
-      shiny::actionButton("b7", "Get Value", class = "btn-sm btn-primary"),
-      shiny::actionButton("b8", "Cursor Position", class = "btn-sm btn-primary"),
-      shiny::actionButton("b9", "Selection Range", class = "btn-sm btn-primary"),
-      shiny::actionButton("b10", "Selected Text", class = "btn-sm btn-primary"),
-      shiny::actionButton("b11", "Set Focus", class = "btn-sm btn-primary")
+      shiny::actionButton("b5", "Language", title = "Change language", class = "btn-sm btn-primary"),
+      shiny::actionButton("b6", "Set Value", title = "Set specified value to editor", class = "btn-sm btn-primary"),
+      shiny::actionButton("b7", "Get Value", title = "Get current value to display", class = "btn-sm btn-primary"),
+      shiny::actionButton("b8", "Cursor Position", title = "Get current cursor position to display", class = "btn-sm btn-primary"),
+      shiny::actionButton("b9", "Selection Range", title = "Get selection range to display", class = "btn-sm btn-primary"),
+      shiny::actionButton("b10", "Selected Text", title = "Get selected text to display", class = "btn-sm btn-primary"),
+      shiny::actionButton("b11", "Set Focus", title = "Set focus to editor", class = "btn-sm btn-primary")
    ),
    shinyMonaco::editorOutput("editor")
 )

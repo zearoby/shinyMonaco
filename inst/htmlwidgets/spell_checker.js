@@ -1,4 +1,4 @@
-class MonacoSpellChecker {
+class editorSpellChecker {
    constructor(editor) {
       this.editor = editor;
       this.contents_modified = true;
