@@ -6,4 +6,5 @@ dependencies:
          - lib/package/min/vs/loader.js
          - utils.js
       stylesheet:
+         - editor.css
          - diffEditor.css

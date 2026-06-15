@@ -15,7 +15,7 @@ HTMLWidgets.widget({
                editor.id = el.id;
 
                if (x.showStatusBar == true) {
-                  el.appendChild(createStatusBar(editor));
+                  el.appendChild(createEditorStatusBar(editor));
                }
                if (x.enableSpellCheck == true) {
                   editor.enableSpellCheck = x.enableSpellCheck;
@@ -143,7 +143,7 @@ const addAction = function(editor) {
 }
 
 
-createStatusBar = function(editor) {
+const createEditorStatusBar = function(editor) {
    const status_bar_div = document.createElement('div');
    status_bar_div.className = "monaco-status-bar";
 
@@ -201,13 +201,7 @@ createStatusBar = function(editor) {
       indent_size_div.textContent = `Spaces: ${editor.getModel().getOptions().indentSize}`;
    });
 
-   status_bar_div.appendChild(cursor_pos_div);
-   status_bar_div.appendChild(selection_div);
-   status_bar_div.appendChild(spacer);
-   status_bar_div.appendChild(words_div);
-   status_bar_div.appendChild(lines_div);
-   status_bar_div.appendChild(language_div);
-   status_bar_div.appendChild(indent_size_div);
+   status_bar_div.append(cursor_pos_div, selection_div, spacer, words_div, lines_div, language_div, indent_size_div);
 
    return status_bar_div;
 }

@@ -1,0 +1,28 @@
+:root {
+   --monaco-diff-editor-tool-bar-color: black;
+   --monaco-diff-editor-tool-bar-bg: white;
+}
+
+.monaco-diff-editor-tool-bar {
+    background: black;
+    color: white;
+}
+
+
+.monaco-diff-editor-tool-button {
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  user-select: none;
+}
+
+.monaco-diff-editor-tool-button:hover {
+  transform: translateY(-3px);
+}
+
+.monaco-diff-editor-tool-button:active {
+  transform: translateY(-1px);
+}
+

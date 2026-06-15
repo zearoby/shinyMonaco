@@ -6,15 +6,10 @@ HTMLWidgets.widget({
          renderValue: function(x) {
             require(['vs/editor/editor.main'], function () {
                el.innerHTML = "";
-               el.style.display = "flex";
-               el.style.flexDirection = "column";
 
                const tool_bar = document.createElement("div");
-               tool_bar.style.display = "flex";
-               tool_bar.style.gap = "6px";
-               tool_bar.style.margin = "2px";
-               tool_bar.style.paddingBottom = "2px";
-               tool_bar.style.alignItems = "center";
+               tool_bar.className = "monaco-diff-editor-tool-bar";
+
                const inline_checkbox = document.createElement("div");
                inline_checkbox.innerHTML = `<label><input type="checkbox" id="${el.id}_inline_checkbox">Inline</label>`;
                inline_checkbox.title = "Show monacoDiffEditor in split view or inline view";
@@ -25,9 +20,11 @@ HTMLWidgets.widget({
                wrap_line_checkbox.innerHTML = `<label><input type="checkbox" id="${el.id}_wrap_line_checkbox">Wrap Line</label>`;
                wrap_line_checkbox.title = "Wrap long line";
                const go_previous_btn = document.createElement("button");
+               go_previous_btn.className = "monaco-diff-tool-button";
                go_previous_btn.textContent = "↑";
                go_previous_btn.title = "Go to previous discrepancy";
                const go_next_btn = document.createElement("button");
+               go_next_btn.className = "monaco-diff-tool-button";
                go_next_btn.textContent = "↓";
                go_next_btn.title = "Go to next discrepancy";
                const status_label = document.createElement('span');
@@ -35,8 +32,8 @@ HTMLWidgets.widget({
 
                tool_bar.append(inline_checkbox, ignore_spaces_checkbox, wrap_line_checkbox, go_previous_btn, go_next_btn, status_label);
                el.appendChild(tool_bar);
-               let diffEditor = null;
 
+               let diffEditor = null;
 
                function initDiffEditor() {
                   const editorModelA = monaco.editor.createModel(x.valueA, x.language);

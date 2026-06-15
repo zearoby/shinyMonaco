@@ -20,7 +20,7 @@ ui <- bslib::page_fillable(
       shiny::actionButton("b11", "Set Focus", title = "Set focus to editor", class = "btn-sm btn-primary")
    ),
    shiny::fluidRow(
-      style = "margin: 0px",
+      style = "margin-left: -6px; margin-right: -6px;",
       shinyMonaco::editorOutput("editor1", width = "50%"),
       shinyMonaco::editorOutput("editor2", width = "50%")
    ),
