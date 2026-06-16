@@ -1,10 +1,66 @@
-#' <Add Title>
-#'
-#' <Add Description>
-#'
-#' @import htmlwidgets
-#'
-#' @export
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
+#' @description
+#'    Render an Monaco editor on an application page.
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+# Function Arguments:
+#' @param value
+#'    [character]: Set text to editor when initializing
+#' @param enableSpellCheck
+#'    [logical]: Enable check typo of spelling
+#' @param fontFamily
+#'    [character]: The font family
+#' @param fontSize
+#'    [integer]: The font size
+#' @param insertSpaces
+#'    [logical]: Insert spaces when pressing Tab. This setting is overridden based on the file contents when detectIndentation is on. Defaults to true.
+#' @param language
+#'    [character]: The initial language of the auto created model in the editor. To not automatically create a model, use model: null.
+#' @param lineNumbers
+#'    [character], [integer]: Control the rendering of line numbers. If it is a function, it will be invoked when rendering a line number and the return value will be rendered. Otherwise, if it is a truthy, line numbers will be rendered normally (equivalent of using an identity function). Otherwise, line numbers will not be rendered. Defaults to on.
+#' @param placeholder
+#'    [character]: Sets a placeholder for the editor. If set, the placeholder is shown if the editor is empty.
+#' @param readOnly
+#'    [logical]: Should the editor be read only. See also domReadOnly. Defaults to false.
+#' @param renderWhitespace
+#'    [character]: Enable rendering of whitespace. Defaults to 'selection'. Valid values: "all" | "none" | "boundary" | "selection" | "trailing"
+#' @param rulers
+#'    [list]: Render vertical lines at the specified columns. Defaults to empty list.
+#' @param scrollBeyondLastLine
+#'    [logical]: Enable that scrolling can go one screen size after the last line. Defaults to true.
+#' @param showStatusBar
+#'    [logical]: Show statusBar
+#' @param tabSize
+#'    [integer]: The number of spaces a tab is equal to. This setting is overridden based on the file contents when detectIndentation is on. Defaults to 4.
+#' @param theme
+#'    [character]: Initial theme to be used for rendering. The current out-of-the-box available themes are: 'vs' (default), 'vs-dark', 'hc-black', 'hc-light. You can create custom themes via monaco.editor.defineTheme. To switch a theme, use monaco.editor.setTheme. NOTE: The theme might be overwritten if the OS is in high contrast mode, unless autoDetectHighContrast is set to false.
+#' @param wordWrap
+#'    [character]: Control the wrapping of the editor. When wordWrap = "off", the lines will never wrap. When wordWrap = "on", the lines will wrap at the viewport width. When wordWrap = "wordWrapColumn", the lines will wrap at wordWrapColumn. When wordWrap = "bounded", the lines will wrap at min(viewport width, wordWrapColumn). Defaults to "off".
+#'    Valid values: "off" | "on" | "wordWrapColumn" | "bounded"
+#' @param automaticLayout
+#'    [logical]: Enable that the editor will install a ResizeObserver to check if its container dom node size has changed. Defaults to TRUE.
+#' @param ...
+#'    For more arguments, please refer to \url{https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor_editor_api.editor.IStandaloneEditorConstructionOptions.html}
+#' @param width
+#'    [integer], [character]: Width in pixels (optional, defaults to automatic sizing)
+#' @param height
+#'    [integer], [character]: Height in pixels (optional, defaults to automatic sizing)
+#' @param elementId
+#'    [character]: An element id for the widget (a random character by default)
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+#' @returns Widget for shiny application
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
+#' @examples
+#' if(interactive()){
+#'     shinyEditor::editor(value = "text")
+#' }
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+#' @export editor
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+#' @name   editor
+#' @title  Render an monaco editor
+#' @rdname editor
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
+
 editor <- function(
       value,
       enableSpellCheck     = FALSE,

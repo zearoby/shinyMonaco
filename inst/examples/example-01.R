@@ -19,14 +19,29 @@ ui <- bslib::page_fillable(
       shiny::actionButton("b10", "Selected Text", title = "Get selected text to display", class = "btn-sm btn-primary"),
       shiny::actionButton("b11", "Set Focus", title = "Set focus to editor", class = "btn-sm btn-primary")
    ),
-   shinyMonaco::editorOutput("editor")
+   shiny::div(
+      style = "display: flex;",
+      shinyMonaco::editorOutput("editor1", width = "50%"),
+      shinyMonaco::editorOutput("editor2", width = "50%")
+   ),
+   shinyMonaco::diffEditorOutput("diffEditor")
 )
 
 server <- function(input, output, session) {
-   editor_id <- "editor"
-   output[[editor_id]] <- shinyMonaco::renderEditor({
-      shinyMonaco::editor(readLines("./example-01.R"), language = "python", showStatusBar = TRUE)
+   text1 <- readLines("./example-01.R")
+   text2 <- sub("shinyMonaco", "ShinyMonaco", text1)
+
+   output$editor1 <- shinyMonaco::renderEditor({
+      shinyMonaco::editor(text1, language = "r", showStatusBar = TRUE)
    })
+   output$editor2 <- shinyMonaco::renderEditor({
+      shinyMonaco::editor(text2, language = "r", showStatusBar = TRUE)
+   })
+   output$diffEditor <- shinyMonaco::renderdiffEditor({
+      shinyMonaco::diffEditor(text1, text2, language = "r")
+   })
+
+   editor_id <- "editor1"
 
    spell_check <- shiny::reactiveVal(TRUE)
    shiny::observeEvent(input$b1, {

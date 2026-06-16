@@ -4,7 +4,7 @@
 \alias{removeDiffView}
 \title{Remove monaco diff view}
 \usage{
-removeDiffView(elementId, session)
+removeDiffView(elementId, session = shiny::getDefaultReactiveDomain())
 }
 \arguments{
 \item{elementId}{\link{character}: The element id of the monacoDiffEditor}

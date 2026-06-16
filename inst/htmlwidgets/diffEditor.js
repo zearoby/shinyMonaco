@@ -19,18 +19,16 @@ HTMLWidgets.widget({
                const wrap_line_checkbox = document.createElement("div");
                wrap_line_checkbox.innerHTML = `<label><input type="checkbox" id="${el.id}_wrap_line_checkbox">Wrap Line</label>`;
                wrap_line_checkbox.title = "Wrap long line";
-               const go_previous_btn = document.createElement("span");
+               const go_previous_btn = document.createElement("button");
                go_previous_btn.className = "monaco-diff-editor-tool-button";
                go_previous_btn.textContent = "↑";
                go_previous_btn.title = "Go to previous discrepancy";
-               const go_next_btn = document.createElement("span");
+               const go_next_btn = document.createElement("button");
                go_next_btn.className = "monaco-diff-editor-tool-button";
                go_next_btn.textContent = "↓";
                go_next_btn.title = "Go to next discrepancy";
-               const status_label = document.createElement('span');
-               status_label.title = "The count of discrepancy";
 
-               tool_bar.append(inline_checkbox, ignore_spaces_checkbox, wrap_line_checkbox, go_previous_btn, go_next_btn, status_label);
+               tool_bar.append(inline_checkbox, ignore_spaces_checkbox, wrap_line_checkbox, go_previous_btn, go_next_btn);
                el.appendChild(tool_bar);
 
                let diffEditor = null;
@@ -95,10 +93,12 @@ HTMLWidgets.widget({
 
                go_previous_btn.addEventListener('click', () => {
                   const modified = diffEditor.getModifiedEditor();
+                  console.log(modified);
                   modified.trigger('keyboard', 'editor.action.diffReview.prev', null);
                });
                go_next_btn.addEventListener('click', () => {
                   const modified = diffEditor.getModifiedEditor();
+                  console.log(modified);
                   modified.trigger('keyboard', 'editor.action.diffReview.next', null);
                });
             });

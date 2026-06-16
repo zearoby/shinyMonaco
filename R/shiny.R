@@ -76,7 +76,7 @@ createDiffView <- function(editorAId, editorBId, elementId, session = shiny::get
 #' @rdname removeDiffView
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
-removeDiffView <- function(elementId, session) {
+removeDiffView <- function(elementId, session = shiny::getDefaultReactiveDomain()) {
    shinyjs::runjs(
       paste0(
          "for (const editor of monaco.editor.getDiffEditors()) {",
@@ -238,7 +238,7 @@ updateOptions <- function(outputId, options, session = shiny::getDefaultReactive
 
 setTheme <- function(theme) {
    theme <- tolower(theme)
-   if (length(theme) != 1 || !theme %in% c("vs", "vs-dark", "hc-black", "hc-light")) stop(paste0("`theme` does not exist in below list:\n", paste0("\t", c("vs", "vs-dark", "hc-black", "hc-light"), collapse = ",\n")))
+   if (length(theme) != 1 || !theme %in% getMonacoThemes()) stop(paste0("`theme` does not exist in below list:\n", paste0("\t", getMonacoThemes(), collapse = ",\n")))
    shinyjs::runjs(
       paste0(
          "const theme = '", theme, "';",
@@ -284,6 +284,7 @@ setTheme <- function(theme) {
 
 setLanguage <- function(outputId, language, session = shiny::getDefaultReactiveDomain()) {
    check_output_id(outputId)
+   if (length(language) != 1 || !language %in% getMonacoLanguages()) stop(paste0("`language` does not exist in below list:\n", paste0("\t", getMonacoLanguages(), collapse = ",\n")))
    shinyjs::runjs(
       paste0(
          "const editor = getEditor('", session$ns(outputId), "');",
