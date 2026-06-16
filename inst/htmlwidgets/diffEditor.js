@@ -7,30 +7,6 @@ HTMLWidgets.widget({
             require(['vs/editor/editor.main'], function () {
                el.innerHTML = "";
 
-               const tool_bar = document.createElement("div");
-               tool_bar.className = "monaco-diff-editor-tool-bar";
-
-               const inline_checkbox = document.createElement("div");
-               inline_checkbox.innerHTML = `<label><input type="checkbox" id="${el.id}_inline_checkbox">Inline</label>`;
-               inline_checkbox.title = "Show monacoDiffEditor in split view or inline view";
-               const ignore_spaces_checkbox = document.createElement("div");
-               ignore_spaces_checkbox.innerHTML = `<label><input type="checkbox" id="${el.id}_ignore_spaces_checkbox">Ignore Spaces</label>`;
-               ignore_spaces_checkbox.title = "Ignore trim white space";
-               const wrap_line_checkbox = document.createElement("div");
-               wrap_line_checkbox.innerHTML = `<label><input type="checkbox" id="${el.id}_wrap_line_checkbox">Wrap Line</label>`;
-               wrap_line_checkbox.title = "Wrap long line";
-               const go_previous_btn = document.createElement("button");
-               go_previous_btn.className = "monaco-diff-editor-tool-button";
-               go_previous_btn.textContent = "↑";
-               go_previous_btn.title = "Go to previous discrepancy";
-               const go_next_btn = document.createElement("button");
-               go_next_btn.className = "monaco-diff-editor-tool-button";
-               go_next_btn.textContent = "↓";
-               go_next_btn.title = "Go to next discrepancy";
-
-               tool_bar.append(inline_checkbox, ignore_spaces_checkbox, wrap_line_checkbox, go_previous_btn, go_next_btn);
-               el.appendChild(tool_bar);
-
                let diffEditor = null;
 
                function initDiffEditor() {
@@ -74,33 +50,7 @@ HTMLWidgets.widget({
                else {
                   initDiffEditor();
                }
-
-               inline_checkbox.addEventListener('change', () => {
-                  const inline = document.getElementById(el.id+"_inline_checkbox").checked;
-                  diffEditor.updateOptions({renderSideBySide: !inline});
-               });
-
-               ignore_spaces_checkbox.addEventListener('change', () => {
-                  const ignore_spaces = document.getElementById(el.id+"_ignore_spaces_checkbox").checked;
-                  diffEditor.updateOptions({"ignoreTrimWhitespace": ignore_spaces});
-               });
-
-               wrap_line_checkbox.addEventListener('change', () => {
-                  const wrap_line = document.getElementById(el.id+"_wrap_line_checkbox").checked;
-                  diffEditor.getOriginalEditor().updateOptions({"wordWrap": wrap_line ? "on":"off"});
-                  diffEditor.getModifiedEditor().updateOptions({"wordWrap": wrap_line ? "on":"off"});
-               });
-
-               go_previous_btn.addEventListener('click', () => {
-                  const modified = diffEditor.getModifiedEditor();
-                  console.log(modified);
-                  modified.trigger('keyboard', 'editor.action.diffReview.prev', null);
-               });
-               go_next_btn.addEventListener('click', () => {
-                  const modified = diffEditor.getModifiedEditor();
-                  console.log(modified);
-                  modified.trigger('keyboard', 'editor.action.diffReview.next', null);
-               });
+               createDiffEditorToolBar(el, diffEditor);
             });
          },
 

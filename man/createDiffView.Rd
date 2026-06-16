@@ -8,6 +8,7 @@ createDiffView(
   editorAId,
   editorBId,
   elementId,
+  toolBar = TRUE,
   session = shiny::getDefaultReactiveDomain(),
   sessionA = shiny::getDefaultReactiveDomain(),
   sessionB = shiny::getDefaultReactiveDomain()

@@ -28,7 +28,7 @@
 #' @rdname createDiffView
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
-createDiffView <- function(editorAId, editorBId, elementId, session = shiny::getDefaultReactiveDomain(), sessionA = shiny::getDefaultReactiveDomain(), sessionB = shiny::getDefaultReactiveDomain()) {
+createDiffView <- function(editorAId, editorBId, elementId, toolBar = TRUE, session = shiny::getDefaultReactiveDomain(), sessionA = shiny::getDefaultReactiveDomain(), sessionB = shiny::getDefaultReactiveDomain()) {
    check_output_id(editorAId)
    check_output_id(editorBId)
    removeDiffView(elementId, session)
@@ -36,6 +36,7 @@ createDiffView <- function(editorAId, editorBId, elementId, session = shiny::get
       paste0(
          "const editorA = getEditor('", sessionA$ns(editorAId), "');",
          "const editorB = getEditor('", sessionB$ns(editorBId), "');",
+         "const toolBarFlag = ", tolower(toolBar), ";",
          "const el = document.getElementById('", session$ns(elementId), "');",
          "el.innerHTML = '';",
          "const diffEditor = monaco.editor.createDiffEditor(el, {",
@@ -48,7 +49,10 @@ createDiffView <- function(editorAId, editorBId, elementId, session = shiny::get
          "diffEditor.setModel({",
          "   original: editorA.getModel(),",
          "   modified: editorB.getModel()",
-         "});"
+         "});",
+         "if (toolBarFlag) {",
+         "   createDiffEditorToolBar(el, diffEditor)",
+         "}"
       )
    )
 }
@@ -79,12 +83,15 @@ createDiffView <- function(editorAId, editorBId, elementId, session = shiny::get
 removeDiffView <- function(elementId, session = shiny::getDefaultReactiveDomain()) {
    shinyjs::runjs(
       paste0(
+         "const elementId = '", session$ns(elementId), "';",
          "for (const editor of monaco.editor.getDiffEditors()) {",
-         "   if (editor.id && editor.id === '", session$ns(elementId), "') {",
-         "      editor.dispose();",
+         "   if (editor.id && editor.id === elementId) {",
          "      editor.setModel(null);",
+         "      editor.dispose();",
          "   }",
-         "};"
+         "};",
+         "const diff_editor = document.getElementById(elementId);",
+         "diff_editor.innerHTML = '';"
       )
    )
 }
