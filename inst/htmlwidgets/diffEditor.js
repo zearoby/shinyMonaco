@@ -6,7 +6,6 @@ HTMLWidgets.widget({
          renderValue: function(x) {
             require(['vs/editor/editor.main'], function () {
                el.innerHTML = "";
-
                let diffEditor = null;
 
                function initDiffEditor() {

@@ -65,10 +65,10 @@ server <- function(input, output, session) {
       theme(ifelse(theme() == "vs", "vs-dark", "vs"))
    })
 
-   language <- shiny::reactiveVal("r")
+   language <- shiny::reactiveVal("sas")
    shiny::observeEvent(input$b5, {
       shinyMonaco::setLanguage(editor_id, language())
-      language(ifelse(language() == "r", "javascript", "r"))
+      language(ifelse(language() == "r", "sas", "r"))
    })
    shiny::observeEvent(input$b6, {
       shinyMonaco::setValue(editor_id, "Test Value")

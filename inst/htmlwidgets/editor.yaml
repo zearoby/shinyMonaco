@@ -9,6 +9,8 @@ dependencies:
          - lib/dictionary/en_US/en_US-dic.js
          - lib/package/min/vs/loader.js
          - lib/utils.js
+         - lib/language/sas/sas_highlight_rule.js
+         - lib/language/sas/sas_completion.js
       stylesheet:
          - editor.css
          - diffEditor.css

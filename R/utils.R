@@ -57,8 +57,8 @@ getMonacoLanguages <- memoise::memoise(function() {
       "kotlin", "less", "lexon", "lua", "liquid", "m3", "markdown", "mdx", "mips", "msdax", "mysql",
       "objective-c", "pascal", "pascaligo", "perl", "pgsql", "php", "pla", "postiats", "powerquery",
       "powershell", "proto", "pug", "python", "qsharp", "r", "razor", "redis", "redshift", "restructuredtext",
-      "ruby", "rust", "sb", "scala", "scheme", "scss", "shell", "sol", "aes", "sparql", "sql", "st", "swift",
-      "systemverilog", "verilog", "tcl", "twig", "typescript", "typespec", "vb", "wgsl", "xml", "yaml"
+      "ruby", "rust", "sas", "sb", "scala", "scheme", "scss", "shell", "sol", "aes", "sparql", "sql", "st",
+      "swift", "systemverilog", "verilog", "tcl", "twig", "typescript", "typespec", "vb", "wgsl", "xml", "yaml"
    )
 })
 

@@ -35,7 +35,7 @@
 createDiffEditor <- function(editorAId, editorBId, elementId, toolBar = TRUE, session = shiny::getDefaultReactiveDomain(), sessionA = shiny::getDefaultReactiveDomain(), sessionB = shiny::getDefaultReactiveDomain()) {
    check_output_id(editorAId)
    check_output_id(editorBId)
-   removeDiffView(elementId, session)
+   removeDiffEditor(elementId, session)
    shinyjs::runjs(
       paste0(
          "const editorA = getEditor('", sessionA$ns(editorAId), "');",
