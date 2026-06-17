@@ -11,6 +11,7 @@ dependencies:
          - lib/utils.js
          - lib/language/sas/sas_highlight_rule.js
          - lib/language/sas/sas_completion.js
+         - lib/language/plaintext.js
       stylesheet:
          - editor.css
          - diffEditor.css
