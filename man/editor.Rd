@@ -80,6 +80,6 @@ Render an Monaco editor on an application page.
 }
 \examples{
 if(interactive()){
-    shinyEditor::editor(value = "text")
+    shinyMonaco::editor(value = "text")
 }
 }

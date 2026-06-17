@@ -11,6 +11,8 @@
 #'    [character]: The initial language of the auto created model in the editor. To not automatically create a model, use model: null
 #' @param ignoreTrimWhitespace
 #'    [logical]: Compute the diff by ignoring leading/trailing whitespace Defaults to false
+#' @param automaticLayout
+#'    [logical]: Enable that the editor will install a ResizeObserver to check if its container dom node size has changed. Defaults to TRUE.
 #' @param ...
 #'    For more arguments, please refer to \url{https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor_editor_api.editor.IDiffEditorOptions.html}
 #' @param width
@@ -37,7 +39,7 @@
 diffEditor <- function(
       valueA,
       valueB,
-      language = "plaintext",
+      language             = "plaintext",
       ignoreTrimWhitespace = FALSE,
       automaticLayout      = TRUE,
       ...,

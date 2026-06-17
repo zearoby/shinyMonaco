@@ -30,10 +30,10 @@ server <- function(input, output, session) {
    })
 
    shiny::observeEvent(input$b1, {
-      shinyMonaco::createDiffView("editor1", "editor2", "diffEditor")
+      shinyMonaco::createDiffEditor("editor1", "editor2", "diffEditor")
    })
    shiny::observeEvent(input$b2, {
-      shinyMonaco::removeDiffView("diffEditor")
+      shinyMonaco::removeDiffEditor("diffEditor")
    })
 }
 

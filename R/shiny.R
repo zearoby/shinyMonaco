@@ -1,6 +1,6 @@
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @description
-#'    Create diff editor for exist editors in an exist widget
+#'    Create diffEditor for exist editors in an exist widget
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 # Function Arguments:
 #' @param editorAId
@@ -9,6 +9,10 @@
 #'    [character]: The element id of the second editor
 #' @param elementId
 #'    [character]: The element id of the exist widget to show diffEditor
+#' @param toolBar
+#'    [logical]: Show tool bar in diffEditor
+#' @param session
+#'    [environment]: The Shiny session object for the diffEditor (from the server function of the Shiny app)
 #' @param sessionA
 #'    [environment]: The Shiny session object for the first editor (from the server function of the Shiny app)
 #' @param sessionB
@@ -18,17 +22,17 @@
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @examples
 #' if(interactive()){
-#'    shinyMonaco::createDiffView(editorAId = "editor1", editorBId = "editor2")
+#'    shinyMonaco::createDiffEditor(editorAId = "editor1", editorBId = "editor2")
 #' }
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-#' @export createDiffView
+#' @export createDiffEditor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-#' @name   createDiffView
-#' @title  Create diff editor
-#' @rdname createDiffView
+#' @name   createDiffEditor
+#' @title  Create diffEditor
+#' @rdname createDiffEditor
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
-createDiffView <- function(editorAId, editorBId, elementId, toolBar = TRUE, session = shiny::getDefaultReactiveDomain(), sessionA = shiny::getDefaultReactiveDomain(), sessionB = shiny::getDefaultReactiveDomain()) {
+createDiffEditor <- function(editorAId, editorBId, elementId, toolBar = TRUE, session = shiny::getDefaultReactiveDomain(), sessionA = shiny::getDefaultReactiveDomain(), sessionB = shiny::getDefaultReactiveDomain()) {
    check_output_id(editorAId)
    check_output_id(editorBId)
    removeDiffView(elementId, session)
@@ -64,23 +68,25 @@ createDiffView <- function(editorAId, editorBId, elementId, toolBar = TRUE, sess
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 # Function Arguments:
 #' @param elementId
-#'    [character]: The element id of the monacoDiffEditor
+#'    [character]: The element id of the diffEditor
+#' @param session
+#'    [environment]: The Shiny session object for the diffEditor (from the server function of the Shiny app)
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 #' @returns No return value, called for side effects
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @examples
 #' if(interactive()){
-#'    shinyMonaco::removeDiffView(elementId = "editor1")
+#'    shinyMonaco::removeDiffEditor(elementId = "editor1")
 #' }
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-#' @export removeDiffView
+#' @export removeDiffEditor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-#' @name   removeDiffView
-#' @title  Remove monaco diff view
-#' @rdname removeDiffView
+#' @name   removeDiffEditor
+#' @title  Remove diffEditor
+#' @rdname removeDiffEditor
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
-removeDiffView <- function(elementId, session = shiny::getDefaultReactiveDomain()) {
+removeDiffEditor <- function(elementId, session = shiny::getDefaultReactiveDomain()) {
    shinyjs::runjs(
       paste0(
          "const elementId = '", session$ns(elementId), "';",
