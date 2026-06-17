@@ -3,13 +3,13 @@ dependencies:
       version: 0.55.1
       src: htmlwidgets
       script:
-         - spell_checker.js
-         - dictionary/typo.js
-         - dictionary/en_US/en_US-aff.js
-         - dictionary/en_US/en_US-dic.js
+         - lib/spell_checker.js
+         - lib/dictionary/typo.js
+         - lib/dictionary/en_US/en_US-aff.js
+         - lib/dictionary/en_US/en_US-dic.js
          - lib/package/min/vs/loader.js
-         - utils.js
+         - lib/utils.js
       stylesheet:
          - editor.css
          - diffEditor.css
-         - spell_checker.css
+         - lib/spell_checker.css
