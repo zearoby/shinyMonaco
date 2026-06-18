@@ -8,6 +8,7 @@ diffEditor(
   valueA,
   valueB,
   language = "plaintext",
+  originalEditable = TRUE,
   ignoreTrimWhitespace = FALSE,
   automaticLayout = TRUE,
   ...,
@@ -22,6 +23,8 @@ diffEditor(
 \item{valueB}{\link{character}: Set text to second editor when initializing}
 
 \item{language}{\link{character}: The initial language of the auto created model in the editor. To not automatically create a model, use model: null}
+
+\item{originalEditable}{\link{logical}: Original model should be editable? Defaults to true}
 
 \item{ignoreTrimWhitespace}{\link{logical}: Compute the diff by ignoring leading/trailing whitespace Defaults to false}
 

@@ -9,6 +9,8 @@
 #'    [character]: Set text to second editor when initializing
 #' @param language
 #'    [character]: The initial language of the auto created model in the editor. To not automatically create a model, use model: null
+#' @param originalEditable
+#'    [logical]: Original model should be editable? Defaults to true
 #' @param ignoreTrimWhitespace
 #'    [logical]: Compute the diff by ignoring leading/trailing whitespace Defaults to false
 #' @param automaticLayout
@@ -40,6 +42,7 @@ diffEditor <- function(
       valueA,
       valueB,
       language             = "plaintext",
+      originalEditable     = TRUE,
       ignoreTrimWhitespace = FALSE,
       automaticLayout      = TRUE,
       ...,
@@ -57,6 +60,7 @@ diffEditor <- function(
       valueA = valueA,
       valueB = valueB,
       language = language,
+      originalEditable = originalEditable,
       ignoreTrimWhitespace = ignoreTrimWhitespace,
       automaticLayout = automaticLayout,
       ...

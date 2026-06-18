@@ -32,10 +32,10 @@ server <- function(input, output, session) {
    text2 <- sub("shinyMonaco", "ShinyMonaco", text1)
 
    output$editor1 <- shinyMonaco::renderEditor({
-      shinyMonaco::editor(text1, language = "r", showStatusBar = TRUE)
+      shinyMonaco::editor(text1, language = "sas", theme = "light", showStatusBar = TRUE)
    })
    output$editor2 <- shinyMonaco::renderEditor({
-      shinyMonaco::editor(text2, language = "r", showStatusBar = TRUE)
+      shinyMonaco::editor(text2, language = "plaintext", theme = "light", showStatusBar = TRUE)
    })
    output$diffEditor <- shinyMonaco::renderdiffEditor({
       shinyMonaco::diffEditor(text1, text2, language = "r")

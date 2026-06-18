@@ -107,6 +107,7 @@ editor <- function(
       scrollBeyondLastLine = scrollBeyondLastLine,
       showStatusBar = showStatusBar,
       tabSize = tabSize,
+      theme = theme,
       wordWrap = wordWrap,
       automaticLayout = automaticLayout,
       ...
