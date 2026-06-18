@@ -32,10 +32,10 @@ server <- function(input, output, session) {
    text2 <- sub("shinyMonaco", "ShinyMonaco", text1)
 
    output$editor1 <- shinyMonaco::renderEditor({
-      shinyMonaco::editor(text1, language = "sas", theme = "light", showStatusBar = TRUE)
+      shinyMonaco::editor(text1, language = "sas", showStatusBar = TRUE)
    })
    output$editor2 <- shinyMonaco::renderEditor({
-      shinyMonaco::editor(text2, language = "plaintext", theme = "light", showStatusBar = TRUE)
+      shinyMonaco::editor(text2, language = "plaintext", showStatusBar = TRUE)
    })
    output$diffEditor <- shinyMonaco::renderdiffEditor({
       shinyMonaco::diffEditor(text1, text2, language = "r")
@@ -59,10 +59,16 @@ server <- function(input, output, session) {
       word_wrap(!word_wrap())
    })
 
-   theme <- shiny::reactiveVal("vs-dark")
+   themes <- shiny::reactiveVal(c("vs", "custom-light", "hc-light", "vs-dark", "custom-dark", "hc-black"))
+   theme_n <- shiny::reactiveVal(1)
    shiny::observeEvent(input$b4, {
-      shinyMonaco::setTheme(theme())
-      theme(ifelse(theme() == "vs", "vs-dark", "vs"))
+      current_theme <- themes()[theme_n()]
+      shinyMonaco::setTheme(current_theme)
+      theme_n(ifelse(theme_n() == 6, 1, theme_n() + 1))
+      shiny::showNotification(
+         paste("Current theme:", current_theme),
+         duration = 2
+      )
    })
 
    language <- shiny::reactiveVal("sas")

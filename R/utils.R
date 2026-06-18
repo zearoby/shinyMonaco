@@ -77,5 +77,5 @@ getMonacoLanguages <- memoise::memoise(function() {
 #' @rdname getMonacoThemes
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 getMonacoThemes <- memoise::memoise(function() {
-   list("vs", "vs-dark", "hc-black", "hc-light", "light", "dark")
+   list("vs", "vs-dark", "hc-black", "hc-light", "custom-light", "custom-dark")
 })
