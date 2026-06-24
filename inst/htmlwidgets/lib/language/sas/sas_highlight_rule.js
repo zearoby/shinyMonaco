@@ -1,6 +1,6 @@
 function sas_highlight_provider(monaco) {
    monaco.languages.register({ id: "sas" });
-   monaco.languages.setLanguageConfiguration("sas",{
+   monaco.languages.setLanguageConfiguration("sas", {
       comments: {
          blockComment: ["/*", "*/"]
       },
@@ -44,7 +44,7 @@ function sas_highlight_provider(monaco) {
    });
    // Register a tokens provider for the language
    monaco.languages.setMonarchTokensProvider("sas", {
-      ignoreCase:true,
+      ignoreCase: true,
       defaultToken: "identifier",
       statement_clause: ["append", "into", "separated", "base", "ods", "select", "none", "from", "libname", "noprint", "freq", "call", "transpose", "sort", "sql", "var", "id", "options", "notes", "nomprint", "nosource", "array", "attrib", "by", "contained", "delete", "drop", "format", "forward", "informat", "keep", "length", "merge", "output", "put", "rename", "retain", "set", "stop", "vararray", "varlist", "where", "footnote", "footnote1", "footnote2", "footnote3", "footnote4", "footnote5", "footnote6", "footnote7", "footnote8", "footnote9", "footnote10", "title", "title1", "title2", "title3", "title4", "title5", "title6", "title7", "title8", "title9", "title10"],
       builtins_conditionals: ["do", "if", "then", "else", "end", "until", "while", "to"],

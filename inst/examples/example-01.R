@@ -45,17 +45,20 @@ server <- function(input, output, session) {
 
    spell_check <- shiny::reactiveVal(TRUE)
    shiny::observeEvent(input$b1, {
-      shinyMonaco::setEnableSpellCheck(editor_id, spell_check())
+      shinyMonaco::setEnableSpellCheck("editor1", spell_check())
+      shinyMonaco::setEnableSpellCheck("editor2", spell_check())
       spell_check(!spell_check())
    })
    tab_size <- shiny::reactiveVal(4)
    shiny::observeEvent(input$b2, {
-      shinyMonaco::updateOption(editor_id, name = "indentSize", value = tab_size())
+      shinyMonaco::updateOption("editor1", name = "indentSize", value = tab_size())
+      shinyMonaco::updateOption("editor2", name = "indentSize", value = tab_size())
       tab_size(ifelse(tab_size() == 3, 4, 3))
    })
    word_wrap <- shiny::reactiveVal(TRUE)
    shiny::observeEvent(input$b3, {
-      shinyMonaco::updateOptions(editor_id, list(indentSize = 8, wordWrap = word_wrap()))
+      shinyMonaco::updateOptions("editor1", list(indentSize = 8, wordWrap = word_wrap()))
+      shinyMonaco::updateOptions("editor2", list(indentSize = 8, wordWrap = word_wrap()))
       word_wrap(!word_wrap())
    })
 
@@ -73,12 +76,23 @@ server <- function(input, output, session) {
 
    language <- shiny::reactiveVal("sas")
    shiny::observeEvent(input$b5, {
-      shinyMonaco::setLanguage(editor_id, language())
+      shinyMonaco::setLanguage("editor1", language())
+      shinyMonaco::setLanguage("editor2", language())
       language(ifelse(language() == "r", "sas", "r"))
    })
+
+   text  <- shiny::reactiveVal("Test Value")
    shiny::observeEvent(input$b6, {
-      shinyMonaco::setValue(editor_id, "Test Value")
+      shinyMonaco::setValue("editor1", text())
+      shinyMonaco::setValue("editor2", text())
+      if (text() == "Test Value") {
+         text(paste0(unlist(text1), collapse = "\n"))
+      }
+      else {
+         text("Test Value")
+      }
    })
+
    shiny::observeEvent(input$b7, {
       text <- (shinyMonaco::getValue(editor_id))
       shiny::showModal(shiny::modalDialog(

@@ -374,20 +374,23 @@ setValue <- function(outputId, value, clearChangedHistory = FALSE, session = shi
    check_output_id(outputId)
    if (!missing(value)) value <- paste0(unlist(value), collapse = "\n")
    shinyjs::runjs(
-      paste0(
-         "const editor = getEditor('", session$ns(outputId), "');",
-         ifelse(
-            clearChangedHistory,
-            paste0("editor.setValue('", value, "');"),
-            paste0(
-               "editor.getModel().pushEditOperations([], [",
-               "   {",
-               "      range: editor.getModel().getFullModelRange(),",
-               "      text: '", value, "',",
-               "   }",
-               "], () => null);"
+      sprintf(
+         paste0(
+            "const value = %s;",
+            "const editor = getEditor(%s);",
+            ifelse(
+               clearChangedHistory,
+               paste0("editor.setValue(value);"),
+               paste0(
+                  "editor.getModel().pushEditOperations([], [{",
+                  "   range: editor.getModel().getFullModelRange(),",
+                  "   text: value,",
+                  "}], () => null);"
+               )
             )
-         )
+         ),
+         jsonlite::toJSON(value, auto_unbox = TRUE),
+         jsonlite::toJSON(session$ns(outputId), auto_unbox = TRUE)
       )
    )
 }
