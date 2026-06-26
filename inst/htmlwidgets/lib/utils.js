@@ -19,7 +19,7 @@ const getEditorSetting = function(x) {
       if (editorOptions.includes(key)) {
          editor_setting[key] = x[key];
       }
-      else if (!["enableSpellCheck", "showStatusBar"].includes(key)) {
+      else if (!["enableSpellCheck", "showStatusBar", "showSaveMenu", "showReloadMenu"].includes(key)) {
          unrecognized_arguments.push(key);
       }
    }

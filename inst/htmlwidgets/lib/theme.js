@@ -61,7 +61,7 @@ function custom_theme(monaco) {
     });
 
     // Define a new theme that contains only rules that match this language
-    monaco.editor.defineTheme("custom-light", {
+    monaco.editor.defineTheme("desert", {
         base: "vs",
         inherit: true,
         rules: custom_light_rules,
@@ -71,7 +71,7 @@ function custom_theme(monaco) {
         },
     });
     // Define a new theme that contains only rules that match this language
-    monaco.editor.defineTheme("custom-dark", {
+    monaco.editor.defineTheme("vs-dark-2", {
         base: "vs-dark",
         inherit: true,
         rules: custom_dark_rules,

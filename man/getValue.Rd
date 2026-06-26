@@ -2,7 +2,7 @@
 % Please edit documentation in R/shiny.R
 \name{getValue}
 \alias{getValue}
-\title{Get value in monacoEditor}
+\title{Get value in editor}
 \usage{
 getValue(outputId, session = shiny::getDefaultReactiveDomain())
 }
@@ -15,7 +15,7 @@ getValue(outputId, session = shiny::getDefaultReactiveDomain())
 Character of editor text
 }
 \description{
-Get value in monacoEditor
+Get value in editor
 }
 \examples{
 if(interactive()){

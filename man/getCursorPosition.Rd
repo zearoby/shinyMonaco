@@ -2,7 +2,7 @@
 % Please edit documentation in R/shiny.R
 \name{getCursorPosition}
 \alias{getCursorPosition}
-\title{Get cursor position in monacoEditor}
+\title{Get cursor position in editor}
 \usage{
 getCursorPosition(outputId, session = shiny::getDefaultReactiveDomain())
 }
@@ -15,7 +15,7 @@ getCursorPosition(outputId, session = shiny::getDefaultReactiveDomain())
 List of cursor position
 }
 \description{
-Get cursor position in monacoEditor
+Get cursor position in editor
 }
 \examples{
 if(interactive()){

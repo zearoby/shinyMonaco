@@ -2,7 +2,7 @@
 % Please edit documentation in R/shiny.R
 \name{updateOptions}
 \alias{updateOptions}
-\title{Update options to monacoEditor}
+\title{Update options to editor}
 \usage{
 updateOptions(outputId, options, session = shiny::getDefaultReactiveDomain())
 }
@@ -17,7 +17,7 @@ updateOptions(outputId, options, session = shiny::getDefaultReactiveDomain())
 No return value, called for side effects
 }
 \description{
-Update options to monacoEditor
+Update options to editor
 }
 \examples{
 if(interactive()){

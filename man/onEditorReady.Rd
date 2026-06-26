@@ -2,7 +2,7 @@
 % Please edit documentation in R/shiny.R
 \name{onEditorReady}
 \alias{onEditorReady}
-\title{Fires upon monacoEditor initialisation}
+\title{Fires upon editor ready}
 \usage{
 onEditorReady(outputId, session = shiny::getDefaultReactiveDomain())
 }
@@ -15,7 +15,7 @@ onEditorReady(outputId, session = shiny::getDefaultReactiveDomain())
 \code{TRUE}
 }
 \description{
-Fires upon monacoEditor initialisation
+Fires upon editor ready
 }
 \examples{
 if(interactive()){

@@ -32,7 +32,7 @@ server <- function(input, output, session) {
    text2 <- sub("shinyMonaco", "ShinyMonaco", text1)
 
    output$editor1 <- shinyMonaco::renderEditor({
-      shinyMonaco::editor(text1, language = "sas", showStatusBar = TRUE)
+      shinyMonaco::editor(text1, language = "sas", showStatusBar = TRUE, showSaveMenu = TRUE, showReloadMenu = TRUE)
    })
    output$editor2 <- shinyMonaco::renderEditor({
       shinyMonaco::editor(text2, language = "plaintext", showStatusBar = TRUE)
@@ -62,7 +62,7 @@ server <- function(input, output, session) {
       word_wrap(!word_wrap())
    })
 
-   themes <- shiny::reactiveVal(c("vs", "custom-light", "hc-light", "vs-dark", "custom-dark", "hc-black"))
+   themes <- shiny::reactiveVal(c("vs", "desert", "hc-light", "vs-dark", "vs-dark-2", "hc-black"))
    theme_n <- shiny::reactiveVal(1)
    shiny::observeEvent(input$b4, {
       current_theme <- themes()[theme_n()]
@@ -141,6 +141,18 @@ server <- function(input, output, session) {
    })
    shiny::observeEvent(input$b11, {
       shinyMonaco::setFocus(editor_id)
+   })
+   shiny::observeEvent(shinyMonaco::onEditorSave(editor_id), {
+      text <- (shinyMonaco::getValue(editor_id))
+      shiny::showModal(shiny::modalDialog(
+         title = "Save Text",
+         shiny::code(text),
+         size = "l",
+         easyClose = TRUE
+      ))
+   })
+   shiny::observeEvent(shinyMonaco::onEditorReload(editor_id), {
+      alert("Request Reload File")
    })
 }
 

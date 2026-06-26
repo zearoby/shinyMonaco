@@ -17,10 +17,10 @@ HTMLWidgets.widget({
                if (x.showStatusBar == true) {
                   el.appendChild(createEditorStatusBar(editor));
                }
-               if (x.enableSpellCheck == true) {
-                  editor.enableSpellCheck = x.enableSpellCheck;
-               }
-               addAction(editor);
+               editor.enableSpellCheck = x.enableSpellCheck;
+               editor.showSaveMenu     = x.showSaveMenu;
+               editor.showReloadMenu   = x.showReloadMenu;
+               addActions(editor);
                initOnDidChangeEvent(editor);
                editor.spellChecker = new editorSpellChecker(editor);
                editor.focus();
@@ -69,7 +69,35 @@ const initOnDidChangeEvent = function(editor) {
 }
 
 
-const addAction = function(editor) {
+const addActions = function(editor) {
+   if (editor.showSaveMenu) {
+      editor.addAction({
+         id: "save",
+         label: "Save",
+         keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS],
+         contextMenuGroupId: "navigation",
+         contextMenuOrder: 1,
+         run: function () {
+            if (HTMLWidgets.shinyMode) {
+               Shiny.setInputValue(editor.id + "_on_save", editor.getValue(), {priority: "event"});
+            }
+         }
+      })
+   };
+   if (editor.showReloadMenu) {
+      editor.addAction({
+         id: "reload",
+         label: "Reload",
+         keybindings: [monaco.KeyCode.F5],
+         contextMenuGroupId: "navigation",
+         contextMenuOrder: 2,
+         run: function () {
+            if (HTMLWidgets.shinyMode) {
+               Shiny.setInputValue(editor.id + "_on_reload", true, {priority: "event"});
+            }
+         }
+      })
+   };
    editor.addAction({
       id: "transform_case",
       label: "Transform Case",
@@ -129,7 +157,7 @@ const addAction = function(editor) {
       id: "spell_check",
       label: "Toggle Spell Check",
       contextMenuGroupId: "navigation",
-      contextMenuOrder: 1,
+      contextMenuOrder: 3,
       keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyE],
       run: function () {
          if (editor.enableSpellCheck) {

@@ -148,7 +148,7 @@ setEnableSpellCheck <- function(outputId, enable = TRUE, session = shiny::getDef
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @description
-#'    Update an option to monacoEditor
+#'    Update an option to editor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 # Function Arguments:
 #' @param outputId
@@ -189,7 +189,7 @@ updateOption <- function(outputId, name, value, session = shiny::getDefaultReact
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @description
-#'    Update options to monacoEditor
+#'    Update options to editor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 # Function Arguments:
 #' @param outputId
@@ -209,7 +209,7 @@ updateOption <- function(outputId, name, value, session = shiny::getDefaultReact
 #' @export updateOptions
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 #' @name   updateOptions
-#' @title  Update options to monacoEditor
+#' @title  Update options to editor
 #' @rdname updateOptions
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
@@ -398,7 +398,7 @@ setValue <- function(outputId, value, clearChangedHistory = FALSE, session = shi
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @description
-#'    Get value in monacoEditor
+#'    Get value in editor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 # Function Arguments:
 #' @param outputId
@@ -416,7 +416,7 @@ setValue <- function(outputId, value, clearChangedHistory = FALSE, session = shi
 #' @export getValue
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 #' @name   getValue
-#' @title  Get value in monacoEditor
+#' @title  Get value in editor
 #' @rdname getValue
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
@@ -429,7 +429,7 @@ getValue <- function(outputId, session = shiny::getDefaultReactiveDomain()) {
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @description
-#'    Get cursor position in monacoEditor
+#'    Get cursor position in editor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 # Function Arguments:
 #' @param outputId
@@ -447,7 +447,7 @@ getValue <- function(outputId, session = shiny::getDefaultReactiveDomain()) {
 #' @export getCursorPosition
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 #' @name   getCursorPosition
-#' @title  Get cursor position in monacoEditor
+#' @title  Get cursor position in editor
 #' @rdname getCursorPosition
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
@@ -463,7 +463,7 @@ getCursorPosition <- function(outputId, session = shiny::getDefaultReactiveDomai
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @description
-#'    Get selection range in monacoEditor
+#'    Get selection range in editor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 # Function Arguments:
 #' @param outputId
@@ -481,7 +481,7 @@ getCursorPosition <- function(outputId, session = shiny::getDefaultReactiveDomai
 #' @export getSelectionRange
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 #' @name   getSelectionRange
-#' @title  Get selection range in monacoEditor
+#' @title  Get selection range in editor
 #' @rdname getSelectionRange
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
@@ -497,7 +497,7 @@ getSelectionRange <- function(outputId, session = shiny::getDefaultReactiveDomai
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @description
-#'    Get selected text in monacoEditor
+#'    Get selected text in editor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 # Function Arguments:
 #' @param outputId
@@ -515,7 +515,7 @@ getSelectionRange <- function(outputId, session = shiny::getDefaultReactiveDomai
 #' @export getSelectedText
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 #' @name   getSelectedText
-#' @title  Get selected text in monacoEditor
+#' @title  Get selected text in editor
 #' @rdname getSelectedText
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
@@ -528,7 +528,7 @@ getSelectedText <- function(outputId, session = shiny::getDefaultReactiveDomain(
 
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 #' @description
-#'    Fires upon monacoEditor initialisation
+#'    Fires upon editor ready
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 # Function Arguments:
 #' @param outputId
@@ -546,12 +546,75 @@ getSelectedText <- function(outputId, session = shiny::getDefaultReactiveDomain(
 #' @export onEditorReady
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 #' @name   onEditorReady
-#' @title  Fires upon monacoEditor initialisation
+#' @title  Fires upon editor ready
 #' @rdname onEditorReady
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 
 onEditorReady <- function(outputId, session = shiny::getDefaultReactiveDomain()) {
    check_output_id(outputId)
    data <- session$input[[paste0(outputId, "_ready")]]
+   return(data)
+}
+
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
+#' @description
+#'    Fires upon editor save text request
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+# Function Arguments:
+#' @param outputId
+#'    [character]: The id of the editor
+#' @param session
+#'    [environment]: The Shiny session object (from the server function of the Shiny app).
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+#' @returns `TRUE`
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
+#' @examples
+#' if(interactive()){
+#'     shinyMonaco::onEditorSave(outputId = "editor")
+#' }
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+#' @export onEditorSave
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+#' @name   onEditorSave
+#' @title  Fires upon editor save text request
+#' @rdname onEditorSave
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
+
+onEditorSave <- function(outputId, session = shiny::getDefaultReactiveDomain()) {
+   check_output_id(outputId)
+   data <- session$input[[paste0(outputId, "_on_save")]]
+   return(data)
+}
+
+
+
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
+#' @description
+#'    Fires upon editor reload request
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+# Function Arguments:
+#' @param outputId
+#'    [character]: The id of the editor
+#' @param session
+#'    [environment]: The Shiny session object (from the server function of the Shiny app).
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+#' @returns `TRUE`
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
+#' @examples
+#' if(interactive()){
+#'     shinyMonaco::onEditorReload(outputId = "editor")
+#' }
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+#' @export onEditorReload
+#++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
+#' @name   onEditorReload
+#' @title  Fires upon editor reload request
+#' @rdname onEditorReload
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
+
+onEditorReload <- function(outputId, session = shiny::getDefaultReactiveDomain()) {
+   check_output_id(outputId)
+   data <- session$input[[paste0(outputId, "_on_reload")]]
    return(data)
 }

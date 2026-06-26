@@ -2,7 +2,7 @@
 % Please edit documentation in R/shiny.R
 \name{getSelectedText}
 \alias{getSelectedText}
-\title{Get selected text in monacoEditor}
+\title{Get selected text in editor}
 \usage{
 getSelectedText(outputId, session = shiny::getDefaultReactiveDomain())
 }
@@ -15,7 +15,7 @@ getSelectedText(outputId, session = shiny::getDefaultReactiveDomain())
 Character of selected text
 }
 \description{
-Get selected text in monacoEditor
+Get selected text in editor
 }
 \examples{
 if(interactive()){

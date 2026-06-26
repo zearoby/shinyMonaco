@@ -22,6 +22,8 @@ editor(
   theme = "vs",
   wordWrap = "off",
   automaticLayout = TRUE,
+  showSaveMenu = FALSE,
+  showReloadMenu = FALSE,
   ...,
   width = "100\%",
   height = NULL,

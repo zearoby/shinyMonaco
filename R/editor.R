@@ -79,6 +79,8 @@ editor <- function(
       theme                = "vs",
       wordWrap             = "off",
       automaticLayout      = TRUE,
+      showSaveMenu         = FALSE,
+      showReloadMenu       = FALSE,
       ...,
       width                = "100%",
       height               = NULL,
@@ -110,6 +112,8 @@ editor <- function(
       theme = theme,
       wordWrap = wordWrap,
       automaticLayout = automaticLayout,
+      showSaveMenu = showSaveMenu,
+      showReloadMenu = showReloadMenu,
       ...
    )
 

@@ -24,7 +24,7 @@ updateOption(
 No return value, called for side effects
 }
 \description{
-Update an option to monacoEditor
+Update an option to editor
 }
 \examples{
 if(interactive()){

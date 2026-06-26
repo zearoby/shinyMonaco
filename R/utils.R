@@ -77,5 +77,5 @@ getLanguages <- memoise::memoise(function() {
 #' @rdname getThemes
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
 getThemes <- memoise::memoise(function() {
-   list("vs", "vs-dark", "hc-black", "hc-light", "custom-light", "custom-dark")
+   list("vs", "vs-dark", "hc-black", "hc-light", "desert", "vs-dark-2")
 })
