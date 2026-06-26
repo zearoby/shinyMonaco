@@ -17,11 +17,11 @@ editor(
   renderWhitespace = "boundary",
   rulers = list(100),
   scrollBeyondLastLine = TRUE,
-  showStatusBar = TRUE,
   tabSize = 4,
   theme = "vs",
   wordWrap = "off",
   automaticLayout = TRUE,
+  showStatusBar = TRUE,
   showSaveMenu = FALSE,
   showReloadMenu = FALSE,
   ...,
@@ -55,8 +55,6 @@ editor(
 
 \item{scrollBeyondLastLine}{\link{logical}: Enable that scrolling can go one screen size after the last line. Defaults to true.}
 
-\item{showStatusBar}{\link{logical}: Show statusBar}
-
 \item{tabSize}{\link{integer}: The number of spaces a tab is equal to. This setting is overridden based on the file contents when detectIndentation is on. Defaults to 4.}
 
 \item{theme}{\link{character}: Initial theme to be used for rendering. The current out-of-the-box available themes are: 'vs' (default), 'vs-dark', 'hc-black', 'hc-light. You can create custom themes via monaco.editor.defineTheme. To switch a theme, use monaco.editor.setTheme. NOTE: The theme might be overwritten if the OS is in high contrast mode, unless autoDetectHighContrast is set to false.}
@@ -65,6 +63,12 @@ editor(
 Valid values: "off" | "on" | "wordWrapColumn" | "bounded"}
 
 \item{automaticLayout}{\link{logical}: Enable that the editor will install a ResizeObserver to check if its container dom node size has changed. Defaults to TRUE.}
+
+\item{showStatusBar}{\link{logical}: Show statusBar}
+
+\item{showSaveMenu}{\link{logical}: Show Save menu in editor}
+
+\item{showReloadMenu}{\link{logical}: Show Reload menu in editor}
 
 \item{...}{For more arguments, please refer to \url{https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor_editor_api.editor.IStandaloneEditorConstructionOptions.html}}
 

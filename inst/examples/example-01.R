@@ -143,16 +143,10 @@ server <- function(input, output, session) {
       shinyMonaco::setFocus(editor_id)
    })
    shiny::observeEvent(shinyMonaco::onEditorSave(editor_id), {
-      text <- (shinyMonaco::getValue(editor_id))
-      shiny::showModal(shiny::modalDialog(
-         title = "Save Text",
-         shiny::code(text),
-         size = "l",
-         easyClose = TRUE
-      ))
+      alert(paste0(editor_id, " - Save Text"))
    })
    shiny::observeEvent(shinyMonaco::onEditorReload(editor_id), {
-      alert("Request Reload File")
+      alert(paste0(editor_id, " - Request Reload File"))
    })
 }
 

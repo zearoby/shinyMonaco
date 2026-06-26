@@ -27,8 +27,6 @@
 #'    [list]: Render vertical lines at the specified columns. Defaults to empty list.
 #' @param scrollBeyondLastLine
 #'    [logical]: Enable that scrolling can go one screen size after the last line. Defaults to true.
-#' @param showStatusBar
-#'    [logical]: Show statusBar
 #' @param tabSize
 #'    [integer]: The number of spaces a tab is equal to. This setting is overridden based on the file contents when detectIndentation is on. Defaults to 4.
 #' @param theme
@@ -38,6 +36,12 @@
 #'    Valid values: "off" | "on" | "wordWrapColumn" | "bounded"
 #' @param automaticLayout
 #'    [logical]: Enable that the editor will install a ResizeObserver to check if its container dom node size has changed. Defaults to TRUE.
+#' @param showStatusBar
+#'    [logical]: Show statusBar
+#' @param showSaveMenu
+#'    [logical]: Show Save menu in editor
+#' @param showReloadMenu
+#'    [logical]: Show Reload menu in editor
 #' @param ...
 #'    For more arguments, please refer to \url{https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor_editor_api.editor.IStandaloneEditorConstructionOptions.html}
 #' @param width
@@ -74,11 +78,11 @@ editor <- function(
       renderWhitespace     = "boundary",
       rulers               = list(100),
       scrollBeyondLastLine = TRUE,
-      showStatusBar        = TRUE,
       tabSize              = 4,
       theme                = "vs",
       wordWrap             = "off",
       automaticLayout      = TRUE,
+      showStatusBar        = TRUE,
       showSaveMenu         = FALSE,
       showReloadMenu       = FALSE,
       ...,
@@ -107,11 +111,11 @@ editor <- function(
       renderWhitespace = renderWhitespace,
       rulers = rulers,
       scrollBeyondLastLine = scrollBeyondLastLine,
-      showStatusBar = showStatusBar,
       tabSize = tabSize,
       theme = theme,
       wordWrap = wordWrap,
       automaticLayout = automaticLayout,
+      showStatusBar = showStatusBar,
       showSaveMenu = showSaveMenu,
       showReloadMenu = showReloadMenu,
       ...
