@@ -87,8 +87,8 @@ editor <- function(
    if (!missing(value)) value <- paste0(unlist(value), collapse = "\n")
    if (length(fontSize) != 1 || is.na(as.numeric(fontSize)) || fontSize < 1) stop(paste0("`fontSize` must be a positive number"))
    if (length(fontFamily) != 1 || !tolower(fontFamily) %in% tolower(getSystemFontFamilies())) stop(paste0("`fontFamily` does not exist in system fonts as below list:\n", paste0("\t", getSystemFontFamilies(), collapse = ",\n")))
-   if (length(language) != 1 || !language %in% getMonacoLanguages()) stop(paste0("`language` does not exist in below list:\n", paste0("\t", getMonacoLanguages(), collapse = ",\n")))
-   if (length(theme) != 1 || !theme %in% getMonacoThemes()) stop(paste0("`theme` does not exist in below list:\n", paste0("\t", getMonacoThemes(), collapse = ",\n")))
+   if (length(language) != 1 || !language %in% getLanguages()) stop(paste0("`language` does not exist in below list:\n", paste0("\t", getLanguages(), collapse = ",\n")))
+   if (length(theme) != 1 || !theme %in% getThemes()) stop(paste0("`theme` does not exist in below list:\n", paste0("\t", getThemes(), collapse = ",\n")))
 
 
    # forward options using x

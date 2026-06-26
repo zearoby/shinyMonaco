@@ -43,13 +43,13 @@ getSystemFontFamilies <- memoise::memoise(function() {unique(systemfonts::system
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 #' @returns List of all languages in Monaco editor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-#' @export getMonacoLanguages
+#' @export getLanguages
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-#' @name   getMonacoLanguages
+#' @name   getLanguages
 #' @title  Get all ace modes
-#' @rdname getMonacoLanguages
+#' @rdname getLanguages
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
-getMonacoLanguages <- memoise::memoise(function() {
+getLanguages <- memoise::memoise(function() {
    list(
       "plaintext", "json", "abap", "apex", "azcli", "bat", "bicep", "cameligo", "clojure", "coffeescript",
       "c", "cpp", "csharp", "csp", "css", "cypher", "dart", "dockerfile", "ecl", "elixir", "flow9", "fsharp",
@@ -70,12 +70,12 @@ getMonacoLanguages <- memoise::memoise(function() {
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
 #' @returns List of all themes in Monaco editor
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-#' @export getMonacoThemes
+#' @export getThemes
 #++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++|
-#' @name   getMonacoThemes
+#' @name   getThemes
 #' @title  Get all monaco themes
-#' @rdname getMonacoThemes
+#' @rdname getThemes
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%|
-getMonacoThemes <- memoise::memoise(function() {
+getThemes <- memoise::memoise(function() {
    list("vs", "vs-dark", "hc-black", "hc-light", "custom-light", "custom-dark")
 })

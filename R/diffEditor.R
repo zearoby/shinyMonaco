@@ -52,7 +52,7 @@ diffEditor <- function(
 ) {
    if (!missing(valueA)) valueA <- paste0(unlist(valueA), collapse = "\n")
    if (!missing(valueB)) valueB <- paste0(unlist(valueB), collapse = "\n")
-   if (length(language) != 1 || !language %in% getMonacoLanguages()) stop(paste0("`language` does not exist in below list:\n", paste0("\t", getMonacoLanguages(), collapse = ",\n")))
+   if (length(language) != 1 || !language %in% getLanguages()) stop(paste0("`language` does not exist in below list:\n", paste0("\t", getLanguages(), collapse = ",\n")))
    if (length(ignoreTrimWhitespace) != 1 || !ignoreTrimWhitespace %in% c(TRUE, FALSE)) stop("`ignoreTrimWhitespace` must be TRUE or FALSE")
 
    # forward options using x

@@ -251,7 +251,7 @@ updateOptions <- function(outputId, options, session = shiny::getDefaultReactive
 
 setTheme <- function(theme) {
    theme <- tolower(theme)
-   if (length(theme) != 1 || !theme %in% getMonacoThemes()) stop(paste0("`theme` does not exist in below list:\n", paste0("\t", getMonacoThemes(), collapse = ",\n")))
+   if (length(theme) != 1 || !theme %in% getThemes()) stop(paste0("`theme` does not exist in below list:\n", paste0("\t", getThemes(), collapse = ",\n")))
    shinyjs::runjs(
       paste0(
          "const theme = '", theme, "';",
@@ -297,7 +297,7 @@ setTheme <- function(theme) {
 
 setLanguage <- function(outputId, language, session = shiny::getDefaultReactiveDomain()) {
    check_output_id(outputId)
-   if (length(language) != 1 || !language %in% getMonacoLanguages()) stop(paste0("`language` does not exist in below list:\n", paste0("\t", getMonacoLanguages(), collapse = ",\n")))
+   if (length(language) != 1 || !language %in% getLanguages()) stop(paste0("`language` does not exist in below list:\n", paste0("\t", getLanguages(), collapse = ",\n")))
    shinyjs::runjs(
       paste0(
          "const editor = getEditor('", session$ns(outputId), "');",
