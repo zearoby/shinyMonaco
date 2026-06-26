@@ -5,11 +5,11 @@ The `shinyMonaco` package enables Shiny application developers to use the [monac
 - The version of `monaco editor` is `v0.55.1`
 - Features:
 
-#####         -\> Text Comparison
+##### -\> Text Comparison
 
-#####         -\> Spell Checking
+##### -\> Spell Checking
 
-#####         -\> Extra SAS Code Highlight Mode
+##### -\> Extra SAS Code Highlight Mode
 
 ## Installing
 
